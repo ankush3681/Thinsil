@@ -1,0 +1,105 @@
+
+
+.container{
+    display: flex;
+    height: auto;
+}
+
+.sidebar{
+    width: 15%;
+    border:1px solid red;
+    height:100%;
+}
+
+.products{
+    width:85%;
+    height:auto;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.productBox{
+    height:auto;
+    text-align: center;
+    padding:1rem 2rem;
+    margin:1rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    line-height: 2rem;
+    border-radius: 10px;
+}
+
+.productBox:hover{
+    box-shadow: rgb(91, 159, 236) 0px 4px 6px -1px, rgb(91, 159, 236) 0px 2px 4px -1px;
+}
+
+.productBox img{
+    height:250px;
+    width:200px;
+    cursor: pointer;
+}
+
+.productBoxButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.productBoxButtons button{
+    background:rgb(91, 159, 236);
+    padding: .5rem 1rem;
+    border:0;
+    font-size: medium;
+    font-weight: bold;
+    border-radius: 5px;
+    color:white;
+    cursor: pointer;
+}
+
+.productBoxButtons button:hover{
+    color:black;
+}
+
+.rating{
+    color:white;
+    background-color: rgb(70, 217, 136);
+    padding:.2em .4em;
+    border-radius: 5px;
+    font-size: small;
+}
+
+.discoutPrice{
+    font-size: small;
+    color:grey;
+    text-decoration: line-through;
+}
+
+
+@media (max-width:1050px){
+    .products{
+        display:grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+
+@media (max-width:800px){
+    .products{
+        display:grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .productBox{
+        height:auto;
+        text-align: center;
+        padding:1rem 2rem;
+        margin:1rem;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        line-height: 2rem;
+        border-radius: 10px;
+        font-size: large;
+    }
+
+    .productBox img{
+        height:250px;
+        width:250px;
+    }
+}

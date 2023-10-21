@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Cart from './Pages/Cart';
 import Navbar from './component/Navbar';
+import Overview from './Pages/Overview';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/login" element={< Login/>} />
       <Route path="/signup" element={< SignUp/>} />
       <Route path="/cart" element={< Cart/>} />
+      <Route path="/overview/:id" element={< Overview/>} />
     </Routes>
     </div>
   );
