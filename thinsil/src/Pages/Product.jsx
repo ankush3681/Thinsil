@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import style from "../styles/Product.module.css";
 import { Link } from "react-router-dom";
-import { AiFillStar} from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
+import { MdFilterListAlt } from "react-icons/md";
+import { CgSortAz } from "react-icons/cg";
+import Sidebar from "../component/Sidebar";
 
 const data = [
   {
@@ -176,7 +179,8 @@ const data = [
   {
     brand: "HP Pavilion",
     category: "laptops",
-    description: "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+    description:
+      "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
     discountPercentage: 6.18,
     id: 10,
     images: (4)[
@@ -194,44 +198,67 @@ const data = [
 ];
 
 const Product = () => {
-  // const [data, setData] = useState([]);
+  const [modalFilter , setModalFilter] = useState(false);
+//   {
+//   // const [data, setData] = useState([]);
 
-  // function getData() {
-  //   fetch("https://dummyjson.com/products")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res.products);
-  //       // setData(res.Products);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+//   // function getData() {
+//   //   fetch("https://dummyjson.com/products")
+//   //     .then((res) => res.json())
+//   //     .then((res) => {
+//   //       console.log(res.products);
+//   //       // setData(res.Products);
+//   //     })
+//   //     .catch((err) => console.log(err));
+//   // }
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+//   // useEffect(() => {
+//   //   getData();
+//   // }, []);
+// }
+const toggleSidebar = () =>{
+       setModalFilter(!modalFilter);
+       console.log("ankush")
+}
   return (
+    <>
+    <div className={style.sidebarPopup}>
+      <div onClick={toggleSidebar}><CgSortAz/>Sort</div>
+      <div onClick={toggleSidebar}><MdFilterListAlt/>Filter</div>
+    </div>
     <div className={style.container}>
-      <div className={style.sidebar}>sidebar</div>
+      <div className={style.sidebar}><Sidebar/></div>
       <div className={style.products}>
-        { data.length != 0 && data.map((ele)=>(
-          <div className={style.productBox} key={ele.id}>
-                    <img width={"100%"} src={ele.thumbnail} alt="image" />
-                    <h3>{ele.title}</h3>
-                    <p className={style.oneLinerParagraph}>{ele.description}</p>
-                    <p>{ele.brand}</p>
-                    <div><span className={style.rating} >{ele.rating} <AiFillStar color="white"/></span>({Math.floor(Math.random()*45)})</div>
-                    <h4><span className={style.discoutPrice}>Rs.{Math.floor(ele.price/(1-ele.discountPercentage/100))}</span>  Rs. {ele.price}</h4>
-                    <div className={style.productBoxButtons}>
-                      <Link to={`/overview/${ele.id}`}><button>View More</button></Link>
-                      <button>Add to Cart</button>
-                    </div>
-                 </div>
-        ))} 
+        {data.length != 0 &&
+          data.map((ele) => (
+            <div className={style.productBox} key={ele.id}>
+              <Link to={`/overview/${ele.id}`} className={style.overViewLink}>
+              <img width={"100%"} src={ele.thumbnail} alt="image" />
+              <h3>{ele.title}</h3>
+              <p>{ele.brand}</p>
+              <p>{ele.description}</p>
+              <p>{ele.category}</p>
+              <div>
+                <span className={style.rating}>
+                  {ele.rating} <AiFillStar color="white" /> 
+                </span>
+                 ({Math.floor(Math.random() * 45)})
+              </div>
+              <h4>
+                <span className={style.discoutPrice}>
+                  Rs.
+                  {Math.floor(ele.price / (1 - ele.discountPercentage / 100))}
+                </span>{" "}
+                Rs. {ele.price}
+              </h4>             
+                <button className={style.button}>Add to Cart</button>
+                </Link>
+            </div>
+          ))}
       </div>
     </div>
+    </>
   );
 };
 
 export default Product;
-
-

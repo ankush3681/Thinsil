@@ -106,6 +106,7 @@
     .burger-menu {
       display: block;
       color:rgb(91, 159, 236);
+      cursor: pointer;
     }
   
     .navbar {
